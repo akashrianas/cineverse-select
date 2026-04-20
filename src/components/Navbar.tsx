@@ -72,9 +72,11 @@ export function Navbar() {
                   <UserIcon className="h-4 w-4 mr-2" />
                   My Profile
                 </DropdownMenuItem>
-                <DropdownMenuItem disabled>
-                  <Ticket className="h-4 w-4 mr-2" />
-                  My Wallet
+                <DropdownMenuItem asChild>
+                  <Link to="/wallet" className="cursor-pointer">
+                    <Ticket className="h-4 w-4 mr-2" />
+                    My Wallet
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={signOut} className="text-destructive">

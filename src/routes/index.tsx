@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
+import { HeroSlider } from "@/components/HeroSlider";
 import { MovieCarousel } from "@/components/MovieCarousel";
 import { LocationModal } from "@/components/LocationModal";
-import { MOVIES, FEATURED_MOVIE, type Movie } from "@/data/mockMovies";
+import { MOVIES, FEATURED_MOVIES, type Movie } from "@/data/mockMovies";
 import { Toaster } from "@/components/ui/sonner";
 import { MapPin } from "lucide-react";
 
@@ -37,6 +37,7 @@ export const Route = createFileRoute("/")({
 function Lobby() {
   const { user, location, needsLocation } = useAuth();
   const [locOpen, setLocOpen] = useState(false);
+  const navigate = useNavigate();
 
   // Auto-open location modal once after login.
   useEffect(() => {
@@ -57,9 +58,7 @@ function Lobby() {
       toast.success(`We'll notify you when "${m.title}" releases 🔔`);
       return;
     }
-    toast.info("Booking flow coming next", {
-      description: `${m.title} · ${location.city}`,
-    });
+    navigate({ to: "/book/$movieId", params: { movieId: m.id } });
   };
 
   // Filter by chosen city when set.
@@ -75,7 +74,7 @@ function Lobby() {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        <Hero movie={FEATURED_MOVIE} onBook={handleAction} />
+        <HeroSlider movies={FEATURED_MOVIES} onBook={handleAction} />
 
         {user && location && (
           <div className="mx-auto max-w-7xl px-4 sm:px-6 -mt-8 relative z-10">

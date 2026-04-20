@@ -14,7 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          city: string
+          created_at: string
+          fee: number
+          hall: string
+          id: string
+          movie_id: string
+          movie_title: string
+          poster_url: string
+          seat_tier_breakdown: Json
+          seats: string[]
+          show_date: string
+          showtime: string
+          subtotal: number
+          ticket_code: string
+          total: number
+          user_id: string
+        }
+        Insert: {
+          city: string
+          created_at?: string
+          fee: number
+          hall: string
+          id?: string
+          movie_id: string
+          movie_title: string
+          poster_url: string
+          seat_tier_breakdown?: Json
+          seats: string[]
+          show_date: string
+          showtime: string
+          subtotal: number
+          ticket_code: string
+          total: number
+          user_id: string
+        }
+        Update: {
+          city?: string
+          created_at?: string
+          fee?: number
+          hall?: string
+          id?: string
+          movie_id?: string
+          movie_title?: string
+          poster_url?: string
+          seat_tier_breakdown?: Json
+          seats?: string[]
+          show_date?: string
+          showtime?: string
+          subtotal?: number
+          ticket_code?: string
+          total?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
