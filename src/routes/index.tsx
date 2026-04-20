@@ -3,10 +3,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/Hero";
+import { HeroSlider } from "@/components/HeroSlider";
 import { MovieCarousel } from "@/components/MovieCarousel";
 import { LocationModal } from "@/components/LocationModal";
-import { MOVIES, FEATURED_MOVIE, type Movie } from "@/data/mockMovies";
+import { MOVIES, FEATURED_MOVIES, type Movie } from "@/data/mockMovies";
 import { Toaster } from "@/components/ui/sonner";
 import { MapPin } from "lucide-react";
 
