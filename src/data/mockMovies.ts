@@ -14,7 +14,6 @@ export interface Movie {
   price: { standard: number; premium: number; balcony: number };
   showtimes: string[];
   releaseDate: string;
-  /** Cities (matches LOCATIONS ids) where this movie is screening. */
   cities: string[];
 }
 
@@ -30,6 +29,10 @@ const addDays = (n: number) => {
 const SHOWTIMES = ["10:30 AM", "1:45 PM", "5:00 PM", "8:30 PM", "11:00 PM"];
 const PRICE = { standard: 12, premium: 18, balcony: 22 };
 
+// Verified Unsplash photo IDs — cinematic / sci-fi / cityscape themes.
+const img = (id: string, w = 800) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
+
 export const MOVIES: Movie[] = [
   {
     id: "dune-3",
@@ -38,8 +41,8 @@ export const MOVIES: Movie[] = [
     genre: "Sci-Fi",
     rating: 8.7,
     duration: "2h 46m",
-    posterUrl: "https://image.tmdb.org/t/p/w500/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
-    backdropUrl: "https://image.tmdb.org/t/p/original/87OPoUiBQpA9DQdIWFVDvOdmcoz.jpg",
+    posterUrl: img("1547700055-b61cacebece9", 600),
+    backdropUrl: img("1542204165-65bf26472b9b", 1800),
     trailerUrl: "#",
     status: "now_showing",
     price: PRICE,
@@ -48,14 +51,14 @@ export const MOVIES: Movie[] = [
     cities: ["mumbai", "delhi", "bengaluru", "newyork", "london"],
   },
   {
-    id: "oppenheimer-2",
+    id: "atomic-dawn",
     title: "Atomic Dawn",
     tagline: "History rewritten in fire.",
     genre: "Drama",
     rating: 8.4,
     duration: "3h 00m",
-    posterUrl: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-    backdropUrl: "https://image.tmdb.org/t/p/original/rLb2cwF3Pazuxaj0sRXQ037tGI1.jpg",
+    posterUrl: img("1478720568477-152d9b164e26", 600),
+    backdropUrl: img("1485846234645-a62644f84728", 1800),
     trailerUrl: "#",
     status: "now_showing",
     price: PRICE,
@@ -64,14 +67,14 @@ export const MOVIES: Movie[] = [
     cities: ["mumbai", "delhi", "newyork", "london", "tokyo"],
   },
   {
-    id: "blade-runner-3",
-    title: "Blade Runner 2099",
+    id: "neon-runner",
+    title: "Neon Runner 2099",
     tagline: "More human than human, again.",
     genre: "Sci-Fi",
     rating: 8.1,
     duration: "2h 28m",
-    posterUrl: "https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg",
-    backdropUrl: "https://image.tmdb.org/t/p/original/ilRyazdMJwN05exqhwK4tMKBYZs.jpg",
+    posterUrl: img("1574267432553-4b4628081c31", 600),
+    backdropUrl: img("1517604931442-7e0c8ed2963c", 1800),
     trailerUrl: "#",
     status: "now_showing",
     price: PRICE,
@@ -80,14 +83,14 @@ export const MOVIES: Movie[] = [
     cities: ["mumbai", "bengaluru", "tokyo", "newyork"],
   },
   {
-    id: "interstellar-2",
+    id: "beyond-gargantua",
     title: "Beyond Gargantua",
     tagline: "Love transcends dimensions.",
     genre: "Sci-Fi",
     rating: 9.0,
     duration: "2h 49m",
-    posterUrl: "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
-    backdropUrl: "https://image.tmdb.org/t/p/original/xJHokMbljvjADYdit5fK5VQsXEG.jpg",
+    posterUrl: img("1446776811953-b23d57bd21aa", 600),
+    backdropUrl: img("1419242902214-272b3f66ee7a", 1800),
     trailerUrl: "#",
     status: "advance",
     price: PRICE,
@@ -96,14 +99,14 @@ export const MOVIES: Movie[] = [
     cities: ["mumbai", "delhi", "london", "newyork"],
   },
   {
-    id: "joker-3",
-    title: "Joker: Carnival",
+    id: "carnival",
+    title: "Carnival of Shadows",
     tagline: "Smile. The world is a stage.",
     genre: "Crime",
     rating: 7.9,
     duration: "2h 18m",
-    posterUrl: "https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg",
-    backdropUrl: "https://image.tmdb.org/t/p/original/n6bUvigpRFqSwmPp1m2YADdbRBc.jpg",
+    posterUrl: img("1518929458119-e5bf444c30f4", 600),
+    backdropUrl: img("1489599849927-2ee91cede3ba", 1800),
     trailerUrl: "#",
     status: "advance",
     price: PRICE,
@@ -112,14 +115,14 @@ export const MOVIES: Movie[] = [
     cities: ["delhi", "bengaluru", "newyork", "london"],
   },
   {
-    id: "avatar-4",
-    title: "Avatar: Tides of Pandora",
+    id: "tides-of-pandora",
+    title: "Tides of Pandora",
     tagline: "Return to a world reborn.",
     genre: "Adventure",
     rating: 8.2,
     duration: "3h 10m",
-    posterUrl: "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg",
-    backdropUrl: "https://image.tmdb.org/t/p/original/s16H6tpK2utvwDtzZ8Qy4qm5Emw.jpg",
+    posterUrl: img("1440404653325-ab127d49abc1", 600),
+    backdropUrl: img("1440404653325-ab127d49abc1", 1800),
     trailerUrl: "#",
     status: "coming_soon",
     price: PRICE,
@@ -128,14 +131,14 @@ export const MOVIES: Movie[] = [
     cities: ["mumbai", "delhi", "bengaluru", "tokyo", "london", "newyork"],
   },
   {
-    id: "matrix-5",
-    title: "Matrix: Genesis",
+    id: "matrix-genesis",
+    title: "Code: Genesis",
     tagline: "There is no spoon. There never was.",
     genre: "Action",
     rating: 8.0,
     duration: "2h 22m",
-    posterUrl: "https://image.tmdb.org/t/p/w500/p96dm7sCMn4VYAStA6siNz30G1r.jpg",
-    backdropUrl: "https://image.tmdb.org/t/p/original/zxrBL2OuDGWxYUwSIaqTPYVu0Ed.jpg",
+    posterUrl: img("1526374965328-7f61d4dc18c5", 600),
+    backdropUrl: img("1526374965328-7f61d4dc18c5", 1800),
     trailerUrl: "#",
     status: "coming_soon",
     price: PRICE,
@@ -144,14 +147,14 @@ export const MOVIES: Movie[] = [
     cities: ["tokyo", "newyork", "london"],
   },
   {
-    id: "spider-verse-3",
-    title: "Spider-Verse: Beyond",
+    id: "spider-beyond",
+    title: "Web of Universes",
     tagline: "Every universe. One web.",
     genre: "Animation",
     rating: 8.9,
     duration: "2h 20m",
-    posterUrl: "https://image.tmdb.org/t/p/w500/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
-    backdropUrl: "https://image.tmdb.org/t/p/original/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg",
+    posterUrl: img("1635805737707-575885ab0820", 600),
+    backdropUrl: img("1626814026160-2237a95fc5a0", 1800),
     trailerUrl: "#",
     status: "now_showing",
     price: PRICE,
@@ -161,4 +164,10 @@ export const MOVIES: Movie[] = [
   },
 ];
 
-export const FEATURED_MOVIE = MOVIES[0];
+/** Featured rotation for the hero slider — picks the visually strongest titles. */
+export const FEATURED_MOVIES: Movie[] = [
+  MOVIES[0],
+  MOVIES[1],
+  MOVIES[2],
+  MOVIES[7],
+];
