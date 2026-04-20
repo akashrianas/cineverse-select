@@ -77,14 +77,14 @@ function Lobby() {
         <HeroSlider movies={FEATURED_MOVIES} onBook={handleAction} />
 
         {user && location && (
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 -mt-8 relative z-10">
-            <div className="glass-card px-4 py-3 flex items-center gap-2 text-sm w-fit">
+          <div className="fixed top-20 right-4 sm:right-6 z-30 animate-in fade-in slide-in-from-top-2 duration-500">
+            <div className="glass-card px-4 py-2.5 flex items-center gap-2 text-sm shadow-2xl border border-white/10">
               <MapPin className="h-4 w-4 text-primary" />
-              Showing halls in{" "}
+              <span className="hidden sm:inline text-muted-foreground">Halls in</span>
               <span className="font-semibold text-foreground">{location.city}</span>
               <button
                 onClick={() => setLocOpen(true)}
-                className="ml-2 text-primary hover:underline text-xs uppercase tracking-wider"
+                className="ml-1 text-primary hover:underline text-xs uppercase tracking-wider"
               >
                 Change
               </button>
