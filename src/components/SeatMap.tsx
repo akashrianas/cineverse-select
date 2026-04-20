@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
-import * as anime from "animejs";
+import { animate } from "animejs";
 import { ROWS, COLS, type Seat, type SeatTier } from "@/data/seats";
 
 interface Props {
@@ -33,12 +33,10 @@ export function SeatMap({ seats, selected, onToggle }: Props) {
       `[data-seat="${lastToggled.current}"]`,
     );
     if (!el) return;
-    anime.remove(el);
-    anime({
-      targets: el,
+    animate(el, {
       scale: [1, 1.35, 1],
       duration: 320,
-      easing: "easeOutElastic(1, .6)",
+      ease: "outElastic(1, .6)",
     });
   }, [selected]);
 

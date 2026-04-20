@@ -1,4 +1,5 @@
 import { Star, Clock, Bell, Calendar } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import type { Movie } from "@/data/mockMovies";
