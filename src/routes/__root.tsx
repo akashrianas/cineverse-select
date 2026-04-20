@@ -1,6 +1,8 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useRouterState } from "@tanstack/react-router";
+import { AnimatePresence } from "framer-motion";
 
 import appCss from "../styles.css?url";
+import { CinemaLoader } from "@/components/CinemaLoader";
 
 function NotFoundComponent() {
   return (
@@ -29,14 +31,13 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "CineVault" },
+      { name: "description", content: "Cinematic movie booking experience" },
+      { name: "author", content: "CineVault" },
+      { property: "og:title", content: "CineVault" },
+      { property: "og:description", content: "Cinematic movie booking experience" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
@@ -65,5 +66,15 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  // Show a cinematic loader during route transitions / pending loaders
+  const isNavigating = useRouterState({
+    select: (s) => s.isLoading || s.isTransitioning,
+  });
+
+  return (
+    <>
+      <Outlet />
+      <AnimatePresence>{isNavigating && <CinemaLoader />}</AnimatePresence>
+    </>
+  );
 }
