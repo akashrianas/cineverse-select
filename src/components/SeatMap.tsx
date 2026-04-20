@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
-import anime from "animejs";
+import * as anime from "animejs";
 import { ROWS, COLS, type Seat, type SeatTier } from "@/data/seats";
 
 interface Props {
