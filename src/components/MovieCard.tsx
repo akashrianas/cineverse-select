@@ -23,36 +23,41 @@ export function MovieCard({ movie, onAction }: Props) {
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className="glass-card overflow-hidden w-[220px] sm:w-[240px] shrink-0 group"
     >
-      <div className="relative aspect-[2/3] overflow-hidden">
-        <img
-          src={movie.posterUrl}
-          alt={movie.title}
-          loading="lazy"
-          draggable={false}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-        <div className="absolute top-2 right-2 flex items-center gap-1 bg-background/70 backdrop-blur-md rounded-full px-2 py-0.5 border border-white/10">
-          <Star className="h-3 w-3 fill-primary text-primary" />
-          <span className="text-xs font-semibold">{movie.rating}</span>
+      {/* Clickable poster links to detail page */}
+      <Link to="/movie/$movieId" params={{ movieId: movie.id }} className="block">
+        <div className="relative aspect-[2/3] overflow-hidden">
+          <img
+            src={movie.posterUrl}
+            alt={movie.title}
+            loading="lazy"
+            draggable={false}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+          <div className="absolute top-2 right-2 flex items-center gap-1 bg-background/70 backdrop-blur-md rounded-full px-2 py-0.5 border border-white/10">
+            <Star className="h-3 w-3 fill-primary text-primary" />
+            <span className="text-xs font-semibold">{movie.rating}</span>
+          </div>
+          {movie.status === "advance" && (
+            <div className="absolute top-2 left-2 backdrop-blur-md rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+                 style={{ backgroundColor: "var(--indigo)" }}>
+              {movie.releaseDate}
+            </div>
+          )}
+          {movie.status === "coming_soon" && (
+            <div className="absolute top-2 left-2 backdrop-blur-md rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+                 style={{ backgroundColor: "var(--crimson)" }}>
+              Coming Soon
+            </div>
+          )}
         </div>
-        {movie.status === "advance" && (
-          <div className="absolute top-2 left-2 bg-indigo/80 backdrop-blur-md rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
-               style={{ backgroundColor: "var(--indigo)" }}>
-            {movie.releaseDate}
-          </div>
-        )}
-        {movie.status === "coming_soon" && (
-          <div className="absolute top-2 left-2 bg-crimson/90 backdrop-blur-md rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
-               style={{ backgroundColor: "var(--crimson)" }}>
-            Coming Soon
-          </div>
-        )}
-      </div>
+      </Link>
       <div className="p-3 space-y-2">
-        <h3 className="font-display text-xl tracking-wide leading-tight line-clamp-1">
-          {movie.title}
-        </h3>
+        <Link to="/movie/$movieId" params={{ movieId: movie.id }}>
+          <h3 className="font-display text-xl tracking-wide leading-tight line-clamp-1 hover:text-primary transition">
+            {movie.title}
+          </h3>
+        </Link>
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <span className="px-2 py-0.5 rounded-full bg-white/5 border border-white/10">
             {movie.genre}

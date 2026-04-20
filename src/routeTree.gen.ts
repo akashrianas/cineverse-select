@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MovieMovieIdRouteImport } from './routes/movie.$movieId'
 import { Route as BookMovieIdRouteImport } from './routes/book.$movieId'
 
 const WalletRoute = WalletRouteImport.update({
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MovieMovieIdRoute = MovieMovieIdRouteImport.update({
+  id: '/movie/$movieId',
+  path: '/movie/$movieId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BookMovieIdRoute = BookMovieIdRouteImport.update({
   id: '/book/$movieId',
   path: '/book/$movieId',
@@ -33,30 +39,34 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/wallet': typeof WalletRoute
   '/book/$movieId': typeof BookMovieIdRoute
+  '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/wallet': typeof WalletRoute
   '/book/$movieId': typeof BookMovieIdRoute
+  '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/wallet': typeof WalletRoute
   '/book/$movieId': typeof BookMovieIdRoute
+  '/movie/$movieId': typeof MovieMovieIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/wallet' | '/book/$movieId'
+  fullPaths: '/' | '/wallet' | '/book/$movieId' | '/movie/$movieId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/wallet' | '/book/$movieId'
-  id: '__root__' | '/' | '/wallet' | '/book/$movieId'
+  to: '/' | '/wallet' | '/book/$movieId' | '/movie/$movieId'
+  id: '__root__' | '/' | '/wallet' | '/book/$movieId' | '/movie/$movieId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   WalletRoute: typeof WalletRoute
   BookMovieIdRoute: typeof BookMovieIdRoute
+  MovieMovieIdRoute: typeof MovieMovieIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/movie/$movieId': {
+      id: '/movie/$movieId'
+      path: '/movie/$movieId'
+      fullPath: '/movie/$movieId'
+      preLoaderRoute: typeof MovieMovieIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/book/$movieId': {
       id: '/book/$movieId'
       path: '/book/$movieId'
@@ -89,7 +106,17 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   WalletRoute: WalletRoute,
   BookMovieIdRoute: BookMovieIdRoute,
+  MovieMovieIdRoute: MovieMovieIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}

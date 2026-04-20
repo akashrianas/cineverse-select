@@ -12,6 +12,7 @@ import {
 import { useAuth } from "@/context/AuthContext";
 import { AuthModal } from "./AuthModal";
 import { LocationModal } from "./LocationModal";
+import { SearchBar } from "./SearchBar";
 
 export function Navbar() {
   const { user, signOut, location } = useAuth();
@@ -32,6 +33,8 @@ export function Navbar() {
         </Link>
 
         <div className="flex items-center gap-2">
+          <SearchBar />
+
           {user && (
             <Button
               variant="ghost"
