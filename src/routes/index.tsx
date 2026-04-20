@@ -75,7 +75,7 @@ function Lobby() {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        <Hero movie={FEATURED_MOVIE} onBook={handleAction} />
+        <HeroSlider movies={FEATURED_MOVIES} onBook={handleAction} />
 
         {user && location && (
           <div className="mx-auto max-w-7xl px-4 sm:px-6 -mt-8 relative z-10">
